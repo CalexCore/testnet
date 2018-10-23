@@ -40,7 +40,7 @@ _Amity, meaning "friendly relations", hopes to bring exactly what it means. With
 
 **Partners**
 
-[Llama Horse](https://llama.horse/)
+[Llama & Horse Mining Co](https://llama.horse/)
 
 ***
 
