@@ -23,7 +23,7 @@ _Amity, meaning "friendly relations", hopes to bring exactly what it means. With
 |Decimals | 4 |
 |P2P | 21018 |
 |RPC | 31018 |
-|Premine | 0% |
+|Premine | 25M |
 |Add' Prefix | amit… |
 
 ***
