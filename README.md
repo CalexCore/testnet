@@ -43,6 +43,12 @@ _<p align="center"> Amity, meaning "friendly relations", hopes to bring exactly 
 <h4 align="center"> Partners
 
 <p align="center"> [Llama & Horse Mining Co](https://llama.horse/)
+  
+### Screen Shots
+
+<h1 align="center"><img title="AmityCoin" src="https://github.com/Neo-Amity/docs/blob/master/images/AC.png" ><img/></h1>
+
+<h1 align="center"><img title="AmityCoin" src="https://github.com/Neo-Amity/docs/blob/master/images/zed.png" ><img/></h1>
 
 ***
 
