@@ -46,9 +46,9 @@ _<p align="center"> Amity, meaning "friendly relations", hopes to bring exactly 
   
 ### Screen Shots
 
-<h1 align="center"><img title="AmityCoin" src="https://github.com/Neo-Amity/docs/blob/master/images/AC.png" ><img/></h1>
+<h1 align="center"><img title="AmityCoin" src="https://github.com/Neo-Amity/docs/blob/master/images/daemon.png" ><img/></h1>
 
-<h1 align="center"><img title="AmityCoin" src="https://github.com/Neo-Amity/docs/blob/master/images/zed.png" ><img/></h1>
+<h1 align="center"><img title="AmityCoin" src="https://github.com/Neo-Amity/docs/blob/master/images/wallet.png" ><img/></h1>
 
 ***
 
