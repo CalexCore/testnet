@@ -30,7 +30,12 @@ _<p align="center"> Amity, meaning "friendly relations", hopes to bring exactly 
 
 ***
 
-### Team Members
+*<p align="center"> The instructions to use and build AmityCoin are located here;*
+<p align="center"> https://github.com/CalexCore/AmityCoin/blob/master/Instructions.md
+
+***
+
+<h2 align="center"> Team
 
 <h3 align="center">Co-Founders
 
