@@ -40,7 +40,7 @@ const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX                 = 5;
 const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V2              = 6;
 const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3              = 7;
 const uint64_t LWMA_3_DIFFICULTY_BLOCK_INDEX                 = 8;
-const uint64_t LWMA_4_DIFFICULTY_BLOCK_INDEX				 = 9;
+const uint64_t LWMA_4_DIFFICULTY_BLOCK_INDEX                 = 9;
 
 const uint64_t DIFFICULTY_WINDOW_V3                          = 60;
 const uint64_t DIFFICULTY_BLOCKS_COUNT_V3                    = DIFFICULTY_WINDOW_V3 + 1;
@@ -71,7 +71,7 @@ TurtleCoind --print-genesis-tx --genesis-block-reward-address TRTLv2Fyavy8CXG8BP
 * You should see your premine appear in the previously generated wallet.
 
 */
-const char     GENESIS_COINBASE_TX_HEX[]                     = "01e80201ff0001f5d771029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121019360681d2f7b8afe8138e6bbde2ce6c2a833a033dcc7ab19ba257bc10dc3bd0b";
+const char     GENESIS_COINBASE_TX_HEX[]                     = "01e80201ff00010002530d480a744a709838e8451e4dd8aa83bfbb774bed99a3852b776c814f0ea2dc21016b515126f445d2d8368f986929f751827ccd2bb95f8ec565b1819742a8b4d6bf";
 
 /* This is the unix timestamp of the first "mined" block (technically block 2, not the genesis block)
    You can get this value by doing "print_block 2" in TurtleCoind. It is used to know what timestamp
@@ -241,7 +241,9 @@ const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
 };
 
 const char* const SEED_NODES[] = {
-  "185.17.27.100:21018",//calexserver
+  "185.17.27.100:21018",//calex1
+  "104.238.222.144:21018",//calex2
+  "185.103.97.205:21018",//calex3
   "97.64.253.98:21018"  //llamaserver
 };
 } // CryptoNote
