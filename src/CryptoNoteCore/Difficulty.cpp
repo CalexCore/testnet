@@ -26,25 +26,25 @@ uint64_t nextDifficultyV7(std::vector<uint64_t> timestamps, std::vector<uint64_t
         return 5000;
     }
 	
-	TS[0] = timestamps[0];
-	
     for ( i = 1; i <= N; i++) {        
-		if ( timestamps[i] > TS[i-1] ) { TS[i] = timestamps[i]; } 
-		else { TS[i] = TS[i-1]; }
+	if ( timestamps[i] > timestamps[i-1] ) { timestamps[i] = timestamps[i]; } 
+	else { timestamps[i] = timestamps[i-1]; }
    }
 
 	
-    for ( int64_t i = 1; i <= N; i++) {
-    if ( i > 4 && TS[i]-TS[i-1] > 4*T  && TS[i-1] - TS[i-4] < (16*T)/10 ) { ST = T; }
-		else if ( i > 7 && TS[i]-TS[i-1] > 4*T  && TS[i-1] - TS[i-7] < 4*T ) { ST = T; }
-		else { // Assume normal conditions, so get ST.
+    for (int64_t i = 1; i <= N; i++) {
+    if ( i > 4 && timestamps[i]-timestamps[i-1] > 4*T  && timestamps[i-1] - timestamps[i-4] < (16*T)/10 ) { ST = T; }
+	else if ( i > 7 && timestamps[i]-timestamps[i-1] > 4*T  && timestamps[i-1] - timestamps[i-7] < 4*T ) { ST = T; }
+	else { // Assume normal conditions, so get ST.
          // LWMA drops too much from long ST, so limit drops with a 5*T limit 
-         ST = std::min(5*T ,TS[i] - TS[i-1]);
-      }
-      L +=  ST * i ;
-   }
+	ST = std::min(5*T ,timestamps[i] - timestamps[i-1]);
+    }
+    L +=  ST * i ;
+  }
+
 
    if (L < N*(N+1)*T/4 ) { L =  N*(N+1)*T/4; }
+
    avg_D = ( cumulativeDifficulties[N] - cumulativeDifficulties[0] )/ N;
    next_D = (avg_D*T*N*(N+1)*97)/(100*2*L);
    prev_D =  cumulativeDifficulties[N] - cumulativeDifficulties[N-1] ;
