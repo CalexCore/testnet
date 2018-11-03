@@ -16,7 +16,7 @@ uint64_t nextDifficultyV7(std::vector<uint64_t> timestamps, std::vector<uint64_t
 {
     uint64_t T = CryptoNote::parameters::DIFFICULTY_TARGET;
     uint64_t N = CryptoNote::parameters::DIFFICULTY_WINDOW_V3;
-    uint64_t L(0), ST, next_D, prev_D, avg_D, i, TS[0];
+    uint64_t L(0), ST, next_D, prev_D, avg_D, i;
 
     /* If we are starting up, returning a difficulty guess. If you are a
        new coin, you might want to set this to a decent estimate of your
@@ -50,7 +50,7 @@ uint64_t nextDifficultyV7(std::vector<uint64_t> timestamps, std::vector<uint64_t
    prev_D =  cumulativeDifficulties[N] - cumulativeDifficulties[N-1] ;
 
    // Apply 10% jump rule.
-   if (  ( TS[N] - TS[N-3] < (8*T)/10 ) || (TS[N] - TS[N-2] < (5*T)/10) || (TS[N] - TS[N-1] < (2*T)/10) )
+   if (  ( timestamps[N] - timestamps[N-3] < (8*T)/10 ) || (timestamps[N] - timestamps[N-2] < (5*T)/10) || (timestamps[N] - timestamps[N-1] < (2*T)/10) )
    {
        next_D = std::max( next_D, std::min( (prev_D*110)/100, (105*avg_D)/100 ) );
    }
@@ -64,7 +64,7 @@ uint64_t nextDifficultyV7(std::vector<uint64_t> timestamps, std::vector<uint64_t
    
    // Make least 3 digits equal avg of past 10 solvetimes.
    if ( next_D > 100000 ) {
-    next_D = ((next_D+500)/1000)*1000 + std::min(static_cast<uint64_t>(999), (TS[N]-TS[N-10])/10);
+    next_D = ((next_D+500)/1000)*1000 + std::min(static_cast<uint64_t>(999), (timestamps[N]-timestamps[N-10])/10);
    }
    
    return  next_D;
