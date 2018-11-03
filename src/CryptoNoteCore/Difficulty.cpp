@@ -9,6 +9,67 @@
 
 #include <config/CryptoNoteConfig.h>
 
+// LWMA-4 difficulty algorithm
+// Copyright (c) 2017-2018 Zawy, MIT License
+// https://github.com/zawy12/difficulty-algorithms/issues/3
+uint64_t nextDifficultyV7(std::vector<uint64_t> timestamps, std::vector<uint64_t> cumulativeDifficulties)
+{
+    uint64_t T = CryptoNote::parameters::DIFFICULTY_TARGET;
+    uint64_t N = CryptoNote::parameters::DIFFICULTY_WINDOW_V3;
+    uint64_t L(0), ST, next_D, prev_D, avg_D, i, TS[0];
+
+    /* If we are starting up, returning a difficulty guess. If you are a
+       new coin, you might want to set this to a decent estimate of your
+       hashrate */
+    if (timestamps.size() < static_cast<uint64_t>(N+1))
+    {
+        return 5000;
+    }
+	
+	TS[0] = timestamps[0];
+	
+    for ( i = 1; i <= N; i++) {        
+		if ( timestamps[i] > TS[i-1] ) { TS[i] = timestamps[i]; } 
+		else { TS[i] = TS[i-1]; }
+   }
+
+	
+    for ( int64_t i = 1; i <= N; i++) {
+    if ( i > 4 && TS[i]-TS[i-1] > 4*T  && TS[i-1] - TS[i-4] < (16*T)/10 ) { ST = T; }
+		else if ( i > 7 && TS[i]-TS[i-1] > 4*T  && TS[i-1] - TS[i-7] < 4*T ) { ST = T; }
+		else { // Assume normal conditions, so get ST.
+         // LWMA drops too much from long ST, so limit drops with a 5*T limit 
+         ST = std::min(5*T ,TS[i] - TS[i-1]);
+      }
+      L +=  ST * i ;
+   }
+
+   if (L < N*(N+1)*T/4 ) { L =  N*(N+1)*T/4; }
+   avg_D = ( cumulativeDifficulties[N] - cumulativeDifficulties[0] )/ N;
+   next_D = (avg_D*T*N*(N+1)*97)/(100*2*L);
+   prev_D =  cumulativeDifficulties[N] - cumulativeDifficulties[N-1] ;
+
+   // Apply 10% jump rule.
+   if (  ( TS[N] - TS[N-3] < (8*T)/10 ) || (TS[N] - TS[N-2] < (5*T)/10) || (TS[N] - TS[N-1] < (2*T)/10) )
+   {
+       next_D = std::max( next_D, std::min( (prev_D*110)/100, (105*avg_D)/100 ) );
+   }
+   
+   // Make all insignificant digits zero for easy reading.
+   i = 1000000000;
+   while (i > 1) {
+     if ( next_D > i*100 ) { next_D = ((next_D+i/2)/i)*i; break; }
+     else { i /= 10; }
+   }
+   
+   // Make least 3 digits equal avg of past 10 solvetimes.
+   if ( next_D > 100000 ) {
+    next_D = ((next_D+500)/1000)*1000 + std::min(static_cast<uint64_t>(999), (TS[N]-TS[N-10])/10);
+   }
+   
+   return  next_D;
+}
+
 // LWMA-3 difficulty algorithm
 // Copyright (c) 2017-2018 Zawy, MIT License
 // https://github.com/zawy12/difficulty-algorithms/issues/3
