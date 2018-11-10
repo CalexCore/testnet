@@ -98,8 +98,8 @@ const uint64_t MAXIMUM_MIXIN_V3                              = 3;
 
 /* The heights to activate the mixin limits at */
 const uint32_t MIXIN_LIMITS_V1_HEIGHT                        = 1000;
-const uint32_t MIXIN_LIMITS_V2_HEIGHT                        = 2000;
-const uint32_t MIXIN_LIMITS_V3_HEIGHT                        = 3000;
+const uint32_t MIXIN_LIMITS_V2_HEIGHT                        = 1001;
+const uint32_t MIXIN_LIMITS_V3_HEIGHT                        = 1002;
 
 /* The mixin to use by default with zedwallet and turtle-service */
 /* DEFAULT_MIXIN_V0 is the mixin used before MIXIN_LIMITS_V1_HEIGHT is started */
@@ -162,8 +162,8 @@ const uint64_t FORK_HEIGHTS[] =
     3,  // 2
     4,  // 3
     1000, // 4
-    2000, // 5
-    3000  // 6
+    1001, // 5
+    1002  // 6
 };
 
 /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
@@ -190,7 +190,7 @@ const char     P2P_NET_DATA_FILENAME[]                       = "p2pstate.bin";
 const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json";
 } // parameters
 
-const char     CRYPTONOTE_NAME[]                             = "AmityCoin";
+const char     CRYPTONOTE_NAME[]                             = "AmityTEST";
 
 const uint8_t  TRANSACTION_VERSION_1                         =  1;
 const uint8_t  TRANSACTION_VERSION_2                         =  2;
@@ -207,9 +207,9 @@ const size_t   BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT        =  10000;  //by def
 const size_t   BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  100;    //by default, blocks count in blocks downloading
 const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  1000;
 
-const int      P2P_DEFAULT_PORT                              =  21018;
-const int      RPC_DEFAULT_PORT                              =  31018;
-const int      SERVICE_DEFAULT_PORT                          =  38070;
+const int      P2P_DEFAULT_PORT                              =  22222;
+const int      RPC_DEFAULT_PORT                              =  33333;
+const int      SERVICE_DEFAULT_PORT                          =  44444;
 
 const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
 const size_t   P2P_LOCAL_GRAY_PEERLIST_LIMIT                 =  5000;
@@ -237,14 +237,14 @@ const char     P2P_STAT_TRUSTED_PUB_KEY[]                    = "";
 const char     LATEST_VERSION_URL[]                          = "https://github.com/CalexCore/AmityCoin";
 const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
 {
-    {  0x28, 0x63, 0x29, 0x41, 0x6d, 0x69, 0x74, 0x79, 0x43, 0x6f, 0x69, 0x6e, 0x32, 0x30, 0x31, 0x38  }
+    {  0x41, 0x6d, 0x69, 0x74, 0x79, 0x43, 0x6f, 0x69, 0x6e, 0x54, 0x65, 0x73, 0x74, 0x6e, 0x65, 0x74  }
 };
 
 const char* const SEED_NODES[] = {
-  "185.17.27.100:21018",//calex1
-  "104.238.222.144:21018",//calex2
-  "185.103.97.205:21018",//calex3
-  "97.64.253.98:21018"  //llamaserver
+  "97.64.253.98:22222",  //calex
+  "104.238.222.144:22222", //calex2
+  "185.103.97.205:22222" //calex3
+
 };
 } // CryptoNote
 
