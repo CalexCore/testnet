@@ -12,7 +12,7 @@
 |Ticker | AMIT |
 | Forked | TurtleCoin - TRTL |
 | Algorithm | Soft Shell v3 |
-|Difficulty | LWMA-3 |
+|Difficulty | LWMA-2 |
 |Block Time | 120 seconds |
 |Block Reward | 232.8305 |
 |Mature Rate | 600 blocks |
