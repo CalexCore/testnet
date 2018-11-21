@@ -1,6 +1,8 @@
 ﻿#include <benchmark/benchmark.h>
 
 #include <random>
+#include <climits>
+
 #include <crypto/hash.h>
 
 namespace  {
@@ -9,16 +11,6 @@ namespace  {
 
   const std::size_t NumRndBlocks = 10;
   const std::size_t BlockSize = 76;
-
-  // Standard Cryptonight Definitions
-  #define CN_PAGE_SIZE                    2097152
-  #define CN_SCRATCHPAD                   2097152
-  #define CN_ITERATIONS                   1048576
-
-  // Standard CryptoNight Lite Definitions
-  #define CN_LITE_PAGE_SIZE               2097152
-  #define CN_LITE_SCRATCHPAD              1048576
-  #define CN_LITE_ITERATIONS              524288
 }
 
 static void HeightArguments(benchmark::internal::Benchmark* b) {
