@@ -30,12 +30,9 @@ public:
 
   size_t timestampCheckWindow(uint32_t blockHeight) const
   {
-      if (blockHeight >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V3)
-      {
+      if (blockHeight >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V3) {
           return CryptoNote::parameters::BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW_V3;
-      }
-      else
-      {
+      } else {
           return m_timestampCheckWindow;
       }
   }
