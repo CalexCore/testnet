@@ -7,7 +7,7 @@
 #include "crypto/crypto.h"
 #include "crypto/hash.h"
 
-namespace BalancedSoftShell {
+namespace SoftShell {
 
 static inline constexpr uint32_t operator "" _kB(unsigned long long int count){
    return static_cast<uint32_t>(count * 1024);
@@ -33,7 +33,7 @@ static inline constexpr uint32_t CryptonighInitializationSize() {
   return CryptonighInitializationBulkSize() * AESBlockSize();
 }
 
-namespace V0_0 {
+namespace V0 {
 
 template
 <
@@ -82,16 +82,8 @@ static inline constexpr uint32_t offsetForHeight(uint32_t height) {
   }
 }
 
-static inline constexpr uint32_t compressorFunc(uint32_t offset) {
-  return offset * offset;
-}
-
-static inline constexpr uint32_t compress(uint32_t offset) {
-  return (WindowSize() * compressorFunc(offset)) / compressorFunc(WindowSize());
-}
-
 static inline constexpr uint32_t iterationsForOffset(uint32_t offset) {
-  return MaxIterations() -  compress(offset) * IterationsIncrementationStep();
+  return MinIterations() + offset * IterationsIncrementationStep();
 }
 
 static inline constexpr uint32_t scratchpadSizeForOffset(uint32_t offset) {
@@ -109,10 +101,10 @@ void operator()(const void *data, size_t length, Crypto::Hash& hash, uint32_t he
 
 }
 
-using cn_balanced_soft_shell_v0_0 = V0_0::Hash
+using amity_cn_ss_v0_0 = V0::Hash
 <
-  256,
-  CryptonightLiteIterations(), 5 * CryptonightIterations() / 4,
+  32,
+  256_kB / 2, 2_MB / 2,
   256_kB, 2_MB,
   2_MB
 >;
