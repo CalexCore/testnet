@@ -77,7 +77,7 @@ TurtleCoind --print-genesis-tx --genesis-block-reward-address TRTLv2Fyavy8CXG8BP
 * You should see your premine appear in the previously generated wallet.
 
 */
-const char     GENESIS_COINBASE_TX_HEX[]                     = "01e80201ff0001000297e09858b9cfc8c7b5920e995472172859b18a84538f256742ce215859659d3f2101e5c80d1e21bbb6308b2d09b8b4dda3c3b4f3e811dfbcb708996dbb8e91d6eccf";
+const char     GENESIS_COINBASE_TX_HEX[]                     = "01e80201ff0001f5d771029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121016833ec4d0f9365cd9ebea1dd4674cd014c33a298c4b0622fa37fc5db692b2ac4";
 
 /* This is the unix timestamp of the first "mined" block (technically block 2, not the genesis block)
    You can get this value by doing "print_block 2" in TurtleCoind. It is used to know what timestamp
@@ -201,7 +201,7 @@ const char     P2P_NET_DATA_FILENAME[]                       = "p2pstate.bin";
 const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json";
 } // parameters
 
-const char     CRYPTONOTE_NAME[]                             = "AmityCoin";
+const char     CRYPTONOTE_NAME[]                             = "njamnet";
 
 const uint8_t  TRANSACTION_VERSION_1                         =  1;
 const uint8_t  TRANSACTION_VERSION_2                         =  2;
@@ -219,8 +219,8 @@ const size_t   BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT        =  10000;  //by def
 const size_t   BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  100;    //by default, blocks count in blocks downloading
 const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  1000;
 
-const int      P2P_DEFAULT_PORT                              =  21018;
-const int      RPC_DEFAULT_PORT                              =  31018;
+const int      P2P_DEFAULT_PORT                              =  22868;
+const int      RPC_DEFAULT_PORT                              =  22869;
 const int      SERVICE_DEFAULT_PORT                          =  38070;
 
 const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
@@ -255,14 +255,12 @@ const char     LICENSE_URL[]                                 = "https://github.c
 const char     LATEST_VERSION_URL[]                          = "https://github.com/CalexCore/AmityCoin";
 const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
 {
-    {  0x28, 0x63, 0x29, 0x43, 0x61, 0x6c, 0x65, 0x78, 0x44, 0x65, 0x76, 0x73, 0x32, 0x30, 0x31, 0x38  }
+    {  0x6e, 0x6a, 0x61, 0x6d, 0x20, 0x6e, 0x6a, 0x61, 0x6d, 0x20, 0x74, 0x65, 0x73, 0x74, 0x20, 0x31   }
 };
 
 const char* const SEED_NODES[] = {
-  "97.64.253.98:21018",  //calex0
-  "185.17.27.100:21018",//calex1
-  "104.238.222.144:21018",//calex2
-  "185.103.97.205:21018"//calex3
+  "207.180.240.151",
+  "207.180.240.152"
 };
 } // CryptoNote
 
