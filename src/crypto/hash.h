@@ -110,49 +110,6 @@ namespace Crypto {
   inline void cn_lite_slow_hash_v2(const void *data, size_t length, Hash &hash) {
     cn_slow_hash(data, length, reinterpret_cast<char *>(&hash), 1, 2, 0, CN_LITE_PAGE_SIZE, CN_LITE_SCRATCHPAD, CN_LITE_ITERATIONS);
   }
-
-  // Standard Cryptonight Definitions
-  #define CN_PAGE_SIZE                    2097152
-  #define CN_SCRATCHPAD                   2097152
-  #define CN_ITERATIONS                   1048576
-
-  // Standard CryptoNight Lite Definitions
-  #define CN_LITE_PAGE_SIZE               2097152
-  #define CN_LITE_SCRATCHPAD              1048576
-  #define CN_LITE_ITERATIONS              524288
-
-  // Standard Crypto Definitions
-  #define AES_BLOCK_SIZE         16
-  #define AES_KEY_SIZE           32
-  #define INIT_SIZE_BLK          8
-  #define INIT_SIZE_BYTE         (INIT_SIZE_BLK * AES_BLOCK_SIZE)
-
-  static inline constexpr uint32_t amity_flavored_window_size() { return 128; }
-  static inline constexpr uint32_t amity_flavored_minimum_iterations() { return CN_LITE_ITERATIONS; }
-  static inline constexpr uint32_t amity_flavored_maximum_iterations() { return CN_ITERATIONS; }
-  static inline constexpr uint32_t amity_flavored_iteration_increase_rate() {
-    static_assert ((amity_flavored_maximum_iterations() - amity_flavored_minimum_iterations()) % amity_flavored_window_size() == 0, "We do not wanna jump!");
-    return (amity_flavored_maximum_iterations() - amity_flavored_minimum_iterations()) / amity_flavored_window_size();
-  }
-  static inline constexpr uint32_t amity_flavored_minimum_scratchpad() { return CN_LITE_SCRATCHPAD; }
-  static inline constexpr uint32_t amity_flavored_maximum_scratchpad() { return CN_SCRATCHPAD; }
-  static inline constexpr uint32_t amity_flavored_scratchpad_increase_rate() {
-    static_assert ((amity_flavored_maximum_scratchpad() - amity_flavored_minimum_scratchpad()) % amity_flavored_window_size() == 0, "We do not wanna jump!");
-    return (amity_flavored_maximum_scratchpad() - amity_flavored_minimum_scratchpad()) / amity_flavored_window_size();
-  }
-
-  // Amity Flavored CryptoNight Soft Shell
-  inline void amity_flavored_slow_hash_v0(const void *data, size_t length, Hash& hash, uint32_t height) {
-    static_assert (amity_flavored_minimum_scratchpad() % AES_BLOCK_SIZE == 0, "These values must, align.");
-    static_assert (amity_flavored_scratchpad_increase_rate() % AES_BLOCK_SIZE == 0, "These values must, align.");
-    static_assert (amity_flavored_minimum_scratchpad() % INIT_SIZE_BYTE == 0, "These values must, align.");
-    static_assert (amity_flavored_scratchpad_increase_rate() % INIT_SIZE_BYTE == 0, "These values must, align.");
-
-    uint32_t offset = height % (amity_flavored_window_size() + 1);
-    uint32_t scratchpad = amity_flavored_minimum_scratchpad() + offset * amity_flavored_scratchpad_increase_rate();
-    uint32_t iterations = amity_flavored_maximum_iterations() - offset * amity_flavored_iteration_increase_rate();
-    return cn_slow_hash(data, length, reinterpret_cast<char*>(&hash), 1, 0, 0, scratchpad, scratchpad, iterations);
-  }
   
   // CryptoNight Soft Shell
   inline  void cn_soft_shell_slow_hash_v0(const void *data, size_t length, Hash &hash, uint32_t height) {
