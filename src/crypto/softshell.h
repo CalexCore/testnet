@@ -38,22 +38,24 @@ namespace V0 {
 template
 <
   uint32_t _WindowSize,
-  uint32_t _MinIterations, uint32_t _MaxIterations,
-  uint32_t _MinScratchpadSize, uint32_t _MaxScratchpadSize,
-  uint32_t _PageSize
+  uint32_t _MinScratchpadSize, uint32_t _MaxScratchpadSize
 >
 struct Hash {
 static inline constexpr uint32_t WindowSize() { return _WindowSize; }
-static inline constexpr uint32_t MinIterations() { return _MinIterations; }
-static inline constexpr uint32_t MaxIterations() { return _MaxIterations; }
 static inline constexpr uint32_t MinScratchpadSize() { return _MinScratchpadSize; }
 static inline constexpr uint32_t MaxScratchpadSize() { return _MaxScratchpadSize; }
-static inline constexpr uint32_t PageSize() { return _PageSize; }
+
+static_assert (MinScratchpadSize() % 2 == 0, "");
+static_assert (MaxScratchpadSize() % 2 == 0, "");
+
+static inline constexpr uint32_t MinIterations() { return MinScratchpadSize() / 2; }
+static inline constexpr uint32_t MaxIterations() { return MaxScratchpadSize() / 2; }
 
 static_assert (WindowSize() % 2 == 0, "");
 static_assert (MinIterations() <= MaxIterations(), "");
 static_assert (MinScratchpadSize() <= MaxScratchpadSize(), "");
-static_assert (PageSize() % CryptonighInitializationSize() == 0, "");
+static_assert (MinScratchpadSize() % CryptonighInitializationSize() == 0, "");
+static_assert (MaxScratchpadSize() % CryptonighInitializationSize() == 0, "");
 static_assert (MinScratchpadSize() % AESBlockSize() == 0, "");
 static_assert (MaxScratchpadSize() % AESBlockSize() == 0, "");
 
@@ -71,6 +73,7 @@ static inline constexpr uint32_t ScratchpadIncrementationStep() {
 static_assert (MinScratchpadSize() + WindowSize() * ScratchpadIncrementationStep() == MaxScratchpadSize(), "");
 static_assert ((MaxScratchpadSize() - MinScratchpadSize()) % WindowSize() == 0, "");
 static_assert (ScratchpadIncrementationStep() % AESBlockSize() == 0, "");
+static_assert (ScratchpadIncrementationStep() % CryptonighInitializationSize() == 0, "");
 
 static inline constexpr uint32_t offsetForHeight(uint32_t height) {
   uint32_t base_offset = (height % WindowSize());
@@ -103,10 +106,8 @@ void operator()(const void *data, size_t length, Crypto::Hash& hash, uint32_t he
 
 using amity_cn_ss_v0_0 = V0::Hash
 <
-  32,
-  256_kB / 2, 2_MB / 2,
-  256_kB, 2_MB,
-  2_MB
+  24 /* Hours a Day */ * 60 /* 60 Minutes an Hour */ / 2 /* Minutes per Block */, // Daily alterations
+  256_kB, 2_MB
 >;
 
 }

@@ -19,7 +19,7 @@ namespace parameters {
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    !      WARNING: Apply this to mainnet later                     !
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-const uint64_t DIFFICULTY_TARGET                             = 10; // seconds
+const uint64_t DIFFICULTY_TARGET                             = 120; // seconds
 
 const uint32_t CRYPTONOTE_MAX_BLOCK_NUMBER                   = 500000000;
 const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 500000000;
@@ -46,10 +46,12 @@ const uint64_t LWMA_3_DIFFICULTY_BLOCK_INDEX                 = 8;
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    !      WARNING: Apply this to mainnet later                     !
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3_BACKPORT     = 9;
+const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3_BACKPORT     = 13355;
 
 const uint64_t DIFFICULTY_WINDOW_V3                          = 60;
 const uint64_t DIFFICULTY_BLOCKS_COUNT_V3                    = DIFFICULTY_WINDOW_V3 + 1;
+const uint64_t DIFFICULTY_WINDOW_V4                          = 30;
+const uint64_t DIFFICULTY_BLOCKS_COUNT_V4                    = DIFFICULTY_WINDOW_V4 + 1;
 
 const unsigned EMISSION_SPEED_FACTOR                         = 29;
 static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
@@ -171,10 +173,10 @@ const uint64_t FORK_HEIGHTS[] =
     2,                // 1
     3,                // 2
     4,                // 3
-    5,                // 4
-    6,                // 5
-    7,                // 6
-    8                 // 7
+    1000,             // 4
+    2000,             // 5
+    3000,             // 6
+    13370             // 7
 };
 
 /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
@@ -201,7 +203,7 @@ const char     P2P_NET_DATA_FILENAME[]                       = "p2pstate.bin";
 const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json";
 } // parameters
 
-const char     CRYPTONOTE_NAME[]                             = "njamnet";
+const char     CRYPTONOTE_NAME[]                             = "AmityCoin";
 
 const uint8_t  TRANSACTION_VERSION_1                         =  1;
 const uint8_t  TRANSACTION_VERSION_2                         =  2;

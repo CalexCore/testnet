@@ -135,7 +135,11 @@ size_t Currency::difficultyCutByBlockVersion(uint8_t blockMajorVersion) const {
 
 size_t Currency::difficultyBlocksCountByBlockVersion(uint8_t blockMajorVersion, uint32_t height) const
 {
-    if (height >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX)
+    if(height >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V3_BACKPORT)
+    {
+        return CryptoNote::parameters::DIFFICULTY_BLOCKS_COUNT_V4;
+    }
+    else if (height >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX)
     {
         return CryptoNote::parameters::DIFFICULTY_BLOCKS_COUNT_V3;
     }
@@ -434,7 +438,14 @@ uint64_t Currency::getNextDifficulty(uint8_t version, uint32_t blockIndex, std::
 {
 	 /* nextDifficultyV3 and above are defined in src/CryptoNoteCore/Difficulty.cpp */
     if (blockIndex >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V3_BACKPORT) {
-        return nextDifficultyV5(timestamps, cumulativeDifficulties);
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+           !      WARNING: Apply this to mainnet later                  !
+           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+      if(blockIndex < CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V3_BACKPORT + CryptoNote::parameters::DIFFICULTY_WINDOW_V4) {
+          return 5000;
+      } else {
+          return nextDifficultyV7(timestamps, cumulativeDifficulties);
+      }
     }
     else if (blockIndex >= CryptoNote::parameters::LWMA_3_DIFFICULTY_BLOCK_INDEX)
     {
