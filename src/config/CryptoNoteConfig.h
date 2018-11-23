@@ -46,7 +46,7 @@ const uint64_t LWMA_3_DIFFICULTY_BLOCK_INDEX                 = 8;
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    !      WARNING: Apply this to mainnet later                     !
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3_BACKPORT     = 13355;
+const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V4     = 13355;
 
 const uint64_t DIFFICULTY_WINDOW_V3                          = 60;
 const uint64_t DIFFICULTY_BLOCKS_COUNT_V3                    = DIFFICULTY_WINDOW_V3 + 1;

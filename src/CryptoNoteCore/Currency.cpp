@@ -135,7 +135,7 @@ size_t Currency::difficultyCutByBlockVersion(uint8_t blockMajorVersion) const {
 
 size_t Currency::difficultyBlocksCountByBlockVersion(uint8_t blockMajorVersion, uint32_t height) const
 {
-    if(height >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V3_BACKPORT)
+    if(height >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V4)
     {
         return CryptoNote::parameters::DIFFICULTY_BLOCKS_COUNT_V4;
     }
@@ -437,11 +437,11 @@ bool Currency::parseAmount(const std::string& str, uint64_t& amount) const {
 uint64_t Currency::getNextDifficulty(uint8_t version, uint32_t blockIndex, std::vector<uint64_t> timestamps, std::vector<uint64_t> cumulativeDifficulties) const
 {
 	 /* nextDifficultyV3 and above are defined in src/CryptoNoteCore/Difficulty.cpp */
-    if (blockIndex >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V3_BACKPORT) {
+    if (blockIndex >= CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V4) {
         /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
            !      WARNING: Apply this to mainnet later                  !
            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-      if(blockIndex < CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V3_BACKPORT + CryptoNote::parameters::DIFFICULTY_WINDOW_V4) {
+      if(blockIndex < CryptoNote::parameters::LWMA_2_DIFFICULTY_BLOCK_INDEX_V4 + CryptoNote::parameters::DIFFICULTY_WINDOW_V4) {
           return 5000;
       } else {
           return nextDifficultyV7(timestamps, cumulativeDifficulties);
