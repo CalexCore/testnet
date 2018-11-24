@@ -106,7 +106,7 @@ void operator()(const void *data, size_t length, Crypto::Hash& hash, uint32_t he
 
 using amity_cn_ss_v0_0 = V0::Hash
 <
-  512,
+  1024,
   256_kB, 256_kB * 7
 >;
 
