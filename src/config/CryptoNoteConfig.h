@@ -46,7 +46,7 @@ const uint64_t LWMA_3_DIFFICULTY_BLOCK_INDEX                 = 8;
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    !      WARNING: Apply this to mainnet later                     !
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V4     = 13355;
+const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V4     = 9;
 
 const uint64_t DIFFICULTY_WINDOW_V3                          = 60;
 const uint64_t DIFFICULTY_BLOCKS_COUNT_V3                    = DIFFICULTY_WINDOW_V3 + 1;
@@ -79,7 +79,7 @@ TurtleCoind --print-genesis-tx --genesis-block-reward-address TRTLv2Fyavy8CXG8BP
 * You should see your premine appear in the previously generated wallet.
 
 */
-const char     GENESIS_COINBASE_TX_HEX[]                     = "01e80201ff0001000297e09858b9cfc8c7b5920e995472172859b18a84538f256742ce215859659d3f2101e5c80d1e21bbb6308b2d09b8b4dda3c3b4f3e811dfbcb708996dbb8e91d6eccf";
+const char     GENESIS_COINBASE_TX_HEX[]                     = "01e80201ff0001f5d771029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121016833ec4d0f9365cd9ebea1dd4674cd014c33a298c4b0622fa37fc5db692b2ac4";
 
 /* This is the unix timestamp of the first "mined" block (technically block 2, not the genesis block)
    You can get this value by doing "print_block 2" in TurtleCoind. It is used to know what timestamp
@@ -182,18 +182,19 @@ static_assert(UPGRADE_VOTING_WINDOW > 1, "Bad UPGRADE_VOTING_WINDOW");
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 const uint64_t FORK_HEIGHTS[] =
 {
-    1,                // 0
-    2,                // 1
-    3,                // 2
-    4,                // 3
-    1000,             // 4
-    2000,             // 5
-    3000,             // 6
-    13370             // 7
+    1,                // 0 < HF
+    2,                // 1 < HF
+    3,                // 2 < HF
+    4,                // 3 < HF
+    5,             // 4 < LWMA + HF
+    6,             // 5 <
+    7,             // 6 <
+    8,             // 7 <
+    9              // 8 < LWMA
 };
 
 /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
-const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX                 = 7;
+const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX                 = 8;
 
 const uint64_t FORK_HEIGHTS_SIZE = sizeof(FORK_HEIGHTS) / sizeof(*FORK_HEIGHTS);
 
@@ -216,7 +217,7 @@ const char     P2P_NET_DATA_FILENAME[]                       = "p2pstate.bin";
 const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json";
 } // parameters
 
-const char     CRYPTONOTE_NAME[]                             = "AmityCoin";
+const char     CRYPTONOTE_NAME[]                             = "AmityCoinTESTNET";
 
 const uint8_t  TRANSACTION_VERSION_1                         =  1;
 const uint8_t  TRANSACTION_VERSION_2                         =  2;
@@ -270,7 +271,7 @@ const char     LICENSE_URL[]                                 = "https://github.c
 const char     LATEST_VERSION_URL[]                          = "https://github.com/CalexCore/AmityCoin";
 const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
 {
-    {  0x6e, 0x6a, 0x61, 0x6d, 0x20, 0x6e, 0x6a, 0x61, 0x6d, 0x20, 0x74, 0x65, 0x73, 0x74, 0x20, 0x31   }
+    {  0x5e, 0x6a, 0x61, 0x6d, 0x20, 0x6e, 0x6a, 0x61, 0x6d, 0x20, 0x74, 0x65, 0x73, 0x74, 0x20, 0x31   }
 };
 
 const char* const SEED_NODES[] = {
