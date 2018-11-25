@@ -98,7 +98,7 @@ void operator()(const void *data, size_t length, Crypto::Hash& hash, uint32_t he
   const uint32_t offset = offsetForHeight(height);
   const uint32_t scratchpad = scratchpadSizeForOffset(offset);
   const uint32_t iterations = iterationsForOffset(offset);
-  ::Crypto::cn_slow_hash(data, length, hashPtr, 1, 0, 0, scratchpad, scratchpad, iterations);
+  ::Crypto::cn_slow_hash(data, length, hashPtr, 1, 1, 0, scratchpad, scratchpad, iterations);
 }
 };
 
