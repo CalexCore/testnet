@@ -1,5 +1,6 @@
-// Copyright (c) 2012-2017, The CryptoNote developers, The Bytecoin developers
+﻿// Copyright (c) 2012-2017, The CryptoNote developers, The Bytecoin developers
 // Copyright (c) 2018, The TurtleCoin Developers
+// Copyright (c) 2018, The Calex Developers
 //
 // Please see the included LICENSE file for more information.
 
@@ -31,7 +32,12 @@ namespace CryptoNote
            was correct when the block was formed - i.e. if 0 mixin was allowed at
            block 100, but is no longer allowed - we should still validate block 100 */
 
-        if (height >= CryptoNote::parameters::MIXIN_LIMITS_V3_HEIGHT)
+        if (height >= CryptoNote::parameters::MIXIN_LIMITS_V4_HEIGHT)
+        {
+          minMixin = CryptoNote::parameters::MINIMUM_MIXIN_V4;
+          maxMixin = CryptoNote::parameters::MAXIMUM_MIXIN_V4;
+        }
+        else if (height >= CryptoNote::parameters::MIXIN_LIMITS_V3_HEIGHT)
         {
           minMixin = CryptoNote::parameters::MINIMUM_MIXIN_V3;
           maxMixin = CryptoNote::parameters::MAXIMUM_MIXIN_V3;
